@@ -11,6 +11,7 @@ for (alp = 'A'; alp <= 'Z'; alp++)
 {
 putchar(tolower(alp));
 }
+putchar('\n');
 return (0);
 }
 

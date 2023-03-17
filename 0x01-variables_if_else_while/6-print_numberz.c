@@ -7,7 +7,7 @@ int main(void)
 {
 int numbz;
 for (numbz = 0 ; numbz < 10 ; numbz++)
-putchar('0' +numbz);
+putchar('0' + numbz);
 putchar('\n');
 return (0);
 }

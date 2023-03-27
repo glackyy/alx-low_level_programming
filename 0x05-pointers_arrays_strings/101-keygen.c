@@ -7,7 +7,8 @@ int main()
 {
 	int i = 0;
 	srand(time(NULL));
-	char password[PASSWORD_LENGTH + 1];
+	char password;
+	password = [PASSWORD_LENGTH + 1];
 	const char valid_chars[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 	const int num_valid_chars = sizeof(valid_chars) - 1;
 	for (i = 0 ; i < PASSWORD_LENGTH; i++)

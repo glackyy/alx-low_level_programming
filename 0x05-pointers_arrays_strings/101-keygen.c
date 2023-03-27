@@ -1,19 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-#define PASSWORD_LENGTH 8 
+/**
+ * main - Entry Point
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
-	int i = 0;
-	srand(time(NULL));
-	char password;
-	password = [PASSWORD_LENGTH + 1];
-	const char valid_chars[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	const int num_valid_chars = sizeof(valid_chars) - 1;
-	for (i = 0 ; i < PASSWORD_LENGTH; i++)
-		password[i] = valid_chars[rand() % num_valid_chars];
-	password[PASSWORD_LENGTH] = '\0';
-	printf("%s\n", password);
-	return (0);
+int pass[100];
+int i, sum, n;
+sum = 0;
+srand(time(NULL));
+for (i = 0; i < 100; i++)
+{
+pass[i] = rand() % 78;
+sum += (pass[i] + '0');
+putchar(pass[i] + '0');
+if ((2772 - sum) - '0' < 78)
+{
+n = 2772 - sum - '0';
+sum += n;
+putchar(n + '0');
+break;
 }
+}
+return (0);
+}
+

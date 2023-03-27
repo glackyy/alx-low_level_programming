@@ -3,7 +3,7 @@
 #include <time.h>
 
 #define PASSWORD_LENGTH 8 
-int main()
+int main(void)
 {
 	int i = 0;
 	srand(time(NULL));

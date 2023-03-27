@@ -9,9 +9,9 @@ int len = 0;
 int i, n;
 for (len = 0 ; str[len] != '\0' ; len++)
 ;
-if(len % 2 == 0)
+if (len % 2 == 0)
 n = len / 2;
-else
+else if (len % 2 == 1)
 n = (len - 1) / 2;
 for (i = n ; i < len ; i++)
 _putchar(str[i]);

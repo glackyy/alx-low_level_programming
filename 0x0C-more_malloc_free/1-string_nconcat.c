@@ -22,12 +22,12 @@ len1 = strlen(s1);
 len2 = strlen(s2);
 if (n >= len2)
 	n = len2;
-res = malloc (len1 + n + 1);
+res = malloc(len1 + n + 1);
 if (res == NULL)
 	return (NULL);
 memcpy(res, s1, len1);
 memcpy(res + len1, s2, n);
-res[len1 + n ] = '\0';
+res[len1 + n] = '\0';
 return (res);
 
 }

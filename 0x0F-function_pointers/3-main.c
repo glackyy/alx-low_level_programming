@@ -26,7 +26,7 @@ if (get_op_func(p) == NULL || p[1] != '\0')
 	printf("Error\n");
 	exit(99);
 }
-if ((strcmp(p, "/") == 0 && num2 == 0) || (strcmp(p,"%") == 0 && num2 == 0))
+if ((strcmp(p, "/") == 0 && num2 == 0) || (strcmp(p, "%") == 0 && num2 == 0))
 {
 	printf("Error\n");
 	exit(100);

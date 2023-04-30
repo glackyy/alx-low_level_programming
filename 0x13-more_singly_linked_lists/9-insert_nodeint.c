@@ -27,12 +27,12 @@ for (i = 0 ; i < idx && curr_node != NULL ; i++)
 	pre_node = curr_node;
 	curr_node = curr_node->next;
 }
-if (i == idx && curr_node != NULL)
+if (i != idx)
 {
+	free(new_node);
+	return (NULL);
+}
 	new_node->next = curr_node;
 	pre_node->next = new_node;
 	return (new_node);
-}
-free(new_node);
-return (NULL);
 }

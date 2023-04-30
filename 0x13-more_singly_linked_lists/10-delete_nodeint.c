@@ -17,7 +17,7 @@ for (i = 0 ; i < index && curr != NULL ; i++)
 	prev = curr;
 	curr = curr->next;
 }
-if (curr== NULL)
+if (curr == NULL)
 	return (-1);
 if (prev == NULL)
 	*head = curr->next;

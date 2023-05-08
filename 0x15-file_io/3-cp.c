@@ -25,7 +25,7 @@ void close_f(int filed)
 {
 int closed;
 closed = close(filed);
-if(closed == -1)
+if (closed == -1)
 {
 	dprintf(STDERR_FILENO, "Error: Can't close filed %d\n", filed);
 	exit(100);

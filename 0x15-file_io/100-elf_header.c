@@ -92,7 +92,7 @@ exit(98);
  */
 int main(int argc, char *argv[])
 {
-Elf64_Ehdr elf_header;
+Elf64_Ehdr *elf_header;
 int filed;
 if (argc != 2)
 {

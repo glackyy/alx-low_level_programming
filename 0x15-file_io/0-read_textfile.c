@@ -30,7 +30,7 @@ if (NbRead <= 0)
 }
 buf[NbRead] = '\0';
 NbWritten = write(STDOUT_FILENO, buf, NbRead);
-if (NbWritten <= 0 || (size_t)NbWritten !=(size_t)NbRead)
+if (NbWritten <= 0 || (size_t)NbWritten != (size_t)NbRead)
 {
 	free(buf);
 	fclose(file);

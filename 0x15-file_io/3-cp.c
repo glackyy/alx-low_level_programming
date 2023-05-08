@@ -1,5 +1,6 @@
 #include "main.h"
 #define BUF_SIZE 1024
+void print_error(const char *err_message, const char *filename, int excode);
 /**
  * print_error - Entry Function
  * @err_message: Pointer

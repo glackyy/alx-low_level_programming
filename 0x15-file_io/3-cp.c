@@ -1,16 +1,35 @@
 #include "main.h"
-#define BUF_SIZE 1024
-void print_error(const char *err_message, const char *filename, int excode);
+char *create_buf(char *file);
+void close_f(int filed);
 /**
- * print_error - Entry Function
- * @err_message: Pointer
- * @filename: Pointer
- * @excode: int
+ * create_buf - Entry Function
+ * @file: Pointer
+ * Return: buf
  */
-void print_error(const char *err_message, const char *filename, int excode)
+char *create_buf(char *file)
 {
-fprintf(stderr, "Error: %s %s\n", err_message, filename);
-exit(excode);
+char *buf;
+buf = malloc(sizeof(char) * 1024);
+if (buf == NULL)
+{
+	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
+	exit(99);
+}
+return (buf);
+}
+/**
+ * close_f - Entry Function
+ * @filed: int
+ */
+void close_f(int filed)
+{
+int closed;
+closed = close(filed);
+if(closed == -1)
+{
+	dprintf(STDERR_FILENO, "Error: Can't close filed %d\n", filed);
+	exit(100);
+}
 }
 /**
  * main - Entry Point
@@ -20,43 +39,36 @@ exit(excode);
  */
 int main(int argc, char *argv[])
 {
-int filed_from, filed_to;
-ssize_t NbRead, NbWritten;
-char buf[BUF_SIZE];
-const char *file_from, *file_to;
+int file_from, file_to, NbRead, NbWritten;
+char *buf;
 if (argc != 3)
 {
-	print_error("Usage: cp file_from file_to", "", 97);
+	dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+	exit(97);
 }
-file_from = argv[1];
-file_to = argv[2];
-filed_from = open(file_from, O_RDONLY);
-if (filed_from == -1)
+buf = create_buf(argv[2]);
+file_from = open(argv[1], O_RDONLY);
+NbRead = read(file_from, buf, 1024);
+file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+do {
+if (file_from == -1 || NbRead == -1)
 {
-print_error("Error: Can't read from file %s\n", file_from, 98);
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+free(buf);
+exit(98);
 }
-filed_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC,
-			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-if (filed_to == -1)
+NbWritten = write(file_to, buf, NbRead);
+if (file_to == -1 || NbWritten == -1)
 {
-print_error( "Error: Can't write to %s\n", file_to, 99);
+dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+free(buf);
+exit(99);
 }
-while ((NbRead = read(filed_from, buf, BUF_SIZE)) > 0)
-{
-	NbWritten = write(filed_to, buf, NbRead);
-	if (NbWritten == -1 || NbWritten != NbRead)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-		exit(99);
-	}
-}
-if (NbRead == -1)
-{
-print_error("Error: Can't read from file %s\n", file_from, 98);
-}
-if (close(filed_from) == -1)
-print_error("Error: Can't close filed %d\n", "", 100);
-if (close(filed_to) == -1)
-print_error("Error: Can't close filed %d\n", "", 100);
+NbRead = read(file_from, buf, 1024);
+file_to = open(argv[2], O_WRONLY | O_APPEND);
+} while (NbRead > 0);
+free(buf);
+close_f(file_from);
+close_f(file_to);
 return (0);
 }

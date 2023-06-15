@@ -19,7 +19,7 @@ if (*head == NULL)
 	*head = n_node;
 	return (n_node);
 }
-*curr = *head;
+curr = *head;
 while (curr->next != NULL)
 	curr = curr->next;
 curr->next = n_node;

@@ -12,7 +12,7 @@ dlistint_t *n_node, *curr;
 unsigned int c = 0;
 if (h == NULL)
 	return (NULL);
-n_node = malloc(sizeof(dlistint_t))
+n_node = malloc(sizeof(dlistint_t));
 if (n_node == NULL)
 	return (NULL);
 n_node->n = n;

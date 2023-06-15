@@ -1,9 +1,9 @@
 #include "lists.h"
 /**
- * free_list - Entry function
+ * free_dlistint - Entry function
  * @head: Pointer
  */
-void free_list(dlistint_t *head)
+void free_dlistint(dlistint_t *head)
 {
 dlistint_t *curr;
 while (head != NULL)

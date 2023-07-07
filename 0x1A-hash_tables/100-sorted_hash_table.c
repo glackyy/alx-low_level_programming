@@ -1,4 +1,10 @@
 #include "hash_tables.h"
+shash_table_t *shash_table_create(unsigned long int size);
+int shash_table_set(shash_table_t *ht, const char *key, const char *value);
+char *shash_table_get(const shash_table_t *ht, const char *key);
+void shash_table_print(const shash_table_t *ht);
+void shash_table_print_rev(const shash_table_t *ht);
+void shash_table_delete(shash_table_t *ht);
 /**
  * shash_table_create - Entry Function
  * @size: unsigned long int
@@ -24,7 +30,6 @@ hash_t->shead = NULL;
 hash_t->stail = NULL;
 return (hash_t);
 }
-
 /**
  * shash_table_set - Entry Function
  * @value: const char
@@ -43,11 +48,11 @@ n = ht->array[idx];
 while (n != NULL)
 {
 	if (strcmp(n->key, key) == 0)
-        {
+	{
 		free(n->value);
 		n->value = strdup(value);
 		return (1);
-        }
+	}
 	n = n->next;
 }
 n_node = malloc(sizeof(shash_node_t));
@@ -95,7 +100,6 @@ else
 }
 return (1);
 }
-
 /**
  * shash_table_get - Entry Function
  * @key: const char
@@ -113,12 +117,11 @@ n = ht->array[idx];
 while (n != NULL)
 {
 	if (strcmp(n->key, key) == 0)
-		return n->value;
+		return (n->value);
 	n = n->next;
 }
 return (NULL);
 }
-
 /**
  * shash_table_print - Entry Function
  * @ht: const shash_table_t
@@ -139,7 +142,6 @@ while (n != NULL)
 }
 printf("}\n");
 }
-
 /**
  * shash_table_print_rev - Entry Function
  * @ht: const shash_table_t
@@ -160,7 +162,6 @@ while (node != NULL)
 }
 printf("}\n");
 }
-
 /**
  * shash_table_delete - Entry Function
  * @ht: shash_table_t

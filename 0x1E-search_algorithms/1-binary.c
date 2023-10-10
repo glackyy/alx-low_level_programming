@@ -21,7 +21,9 @@ if (half && size && 2 == 0)
 if (value == array[half])
 	return ((int)half);
 if (value < array[half])
-	return (recursive_search(array, half, value) + half);
+	return (recursive_search(array, half, value));
+half++;
+return (recursive_search(array + half, size - half, value) + half);
 }
 
 /**

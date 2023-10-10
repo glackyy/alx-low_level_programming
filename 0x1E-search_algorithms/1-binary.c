@@ -16,7 +16,7 @@ printf("Searching in array");
 for (i = 0; i < size; i++)
 	printf("%s %d", (i == 0) ? ":" : ",", array[i]);
 printf("\n");
-if (half && size && 2 == 0)
+if (half && size % 2 == 0)
 	half--;
 if (value == array[half])
 	return ((int)half);
